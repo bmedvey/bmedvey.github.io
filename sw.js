@@ -14,7 +14,7 @@ self.addEventListener('install', event => {
             return cache.addAll(staticFilesToCache);
         });
     });
-    console.log("Install done");
+    console.log("Install done, cached: ", ...staticFilesToCache);
 });
 
 self.addEventListener('activate',event => {
@@ -23,10 +23,10 @@ self.addEventListener('activate',event => {
 });
 
 self.addEventListener('fetch',event => {
+    console.log("fetch,", event.request.url);
     const {request} = event;
-    // event.respondWith(networkFirst(request));
     event.respondWith(
-        caches.match(event.request).then(response => {
+        caches.match(request).then(response => {
             if (response) {
                 console.log("Loading from cache", request.url);
             }
