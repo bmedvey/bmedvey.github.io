@@ -23,7 +23,6 @@ self.addEventListener('activate',event => {
 });
 
 self.addEventListener('fetch',event => {
-    console.log("fetch,", event.request.url);
     const {request} = event;
     event.respondWith(
         caches.match(request).then(response => {

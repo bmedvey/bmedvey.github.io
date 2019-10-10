@@ -7,6 +7,11 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+if(navigator.onLine) {
+    const onlineTag = document.getElementById("online_tag");
+    onlineTag.textContent = "Online Version";
+}
+
 navigator.serviceWorker.ready.then(() => {
     console.log("service worker ready");
 });
